@@ -14,18 +14,18 @@ class Lefter extends React.Component {
             currentSubMenu: '',
             initApproval: 0,
             headerLinkList: [{
-                path: `/audience`,
-                text: `我的人群`,
-                img: 'team'
+                path: `/experiment`,
+                text: `Information`,
+                // img: 'team'
             }, {
-                path: `/analysis/list`,
-                text: `洞察分析`,
-                img: 'alert'
+                path: `/members`,
+                text: `Members`,
+                // img: 'alert'
             }]
         };
     }
     componentWillReceiveProps(nextProps) {
-        this.getCurrentPath(nextProps);
+        // this.getCurrentPath(nextProps);
         return nextProps;
     }
    
@@ -50,6 +50,11 @@ class Lefter extends React.Component {
                 this.setState({
                     currentPath: item.path,
                     currentSubMenu
+                },() => {
+                    console.log(this)
+                    console.log(this.props)
+                    window.location.href = item.path;
+                    // this.props.push(item.path)
                 });
                 return true;
             }
@@ -92,7 +97,7 @@ class Lefter extends React.Component {
                                     className={path.indexOf(currentPath) !== -1 ? 'is-opacity' : ''}
                                     title={
                                         <span>
-                                            <Icon type={item.img} />
+                                            {/* <Icon type={item.img} /> */}
                                             <span>{item.text}</span>
                                         </span>
                                     }
@@ -142,7 +147,7 @@ class Lefter extends React.Component {
                         } else {
                             return (
                                 <Menu.Item key={item.path}>
-                                    <Icon type={item.img} />
+                                    {/* <Icon type={item.img} /> */}
                                     <span>{item.text}</span>
                                     <Link className="a-position"
                                         to={item.path}
@@ -165,12 +170,12 @@ class Lefter extends React.Component {
         }, currentSubMenu);
     }
     render() {
-        // const redirectBlock = this.getRedirectBlock();
         const LefterBlock = this.getLefterBlock();
         const { collapsed } = this.props;
         return (
-            <div className="mod-lefter clearfix" style={!collapsed ? {width: '256px'} : {width: '80px', minWidth: '80px'}}>
+            <div  className='app-lefter'>
                 <div className="logo-bg">
+                    <div>logo</div>
                     {/* <img
                         src={!collapsed ? logo : logoNoText}
                         style={!collapsed ?
@@ -180,7 +185,6 @@ class Lefter extends React.Component {
                     /> */}
                 </div>
                 {LefterBlock}
-                {/* {redirectBlock} */}
             </div>
         );
     }

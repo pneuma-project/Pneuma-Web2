@@ -47,7 +47,7 @@ class NormalLoginForm extends React.Component {
                 token: loginKey,
                 username
               });
-              this.props.push("/experiment/index");
+              this.props.push("/experiment");
             } else if (res.data.code === 500) {
               if (res.data.message == 4000002) {
                 message.error("Wrong username or password");
@@ -65,7 +65,7 @@ class NormalLoginForm extends React.Component {
           })
           .catch(err => {
             // 重新
-            // this.getCaptcha()
+           
             this.setState({
               loading: false
             });
@@ -76,20 +76,11 @@ class NormalLoginForm extends React.Component {
 
   handleClick = e => {
     e.preventDefault();
-    // this.getCaptcha()
+   
   };
 
-  // getCaptcha = () => {
-  //   axios.get('/captcha').then(({ image, key }) => {
-  //     this.setState({
-  //       image,
-  //       key
-  //     })
-  //   })
-  // }
-
   componentDidMount() {
-    // this.getCaptcha()
+
   }
 
   render() {
@@ -131,7 +122,7 @@ class NormalLoginForm extends React.Component {
             >
               Sign In
             </Button>
-            <Link to="/experiment/index" />
+            <Link to="/experiment" />
           </FormItem>
         </Form>
       </div>

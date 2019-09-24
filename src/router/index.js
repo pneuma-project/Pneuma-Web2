@@ -20,23 +20,25 @@ const Experiment = asyncComponent(() =>
   import(/* webpackChunkName: "Experiment" */ "../pages/Experiment")
 );
 
+// 用户列表
+const Members = asyncComponent(() =>
+  import(/* webpackChunkName: "Members" */ "../pages/Members")
+);
 // 路由匹配默认是 exact: true ,并且需要验证
 const routes = [
   {
     path: "/login",
-    // component: bundleHelper(LogIn)
+     // component: bundleHelper(LogIn)
     component: LogIn
   },
   {
     path: "/experiment",
-    // component: bundleHelper(Experiment),
-    openKeys: ["experiment"],
-    children: [
-      {
-        path: "/index",
-        component: Experiment
-      }
-    ]
+     // component: bundleHelper(Experiment)
+    component: Experiment
+  },{
+    path: "/members",
+     // component: bundleHelper(Members)
+    component: Members
   }
 ];
 

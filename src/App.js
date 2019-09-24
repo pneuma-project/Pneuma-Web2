@@ -7,8 +7,9 @@ import { withRouter, Route, Redirect, Switch } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { hot } from "react-hot-loader";
 import Experiment from "./pages/Experiment";
+import Members from './pages/Members'
 import routes from "./router";
-
+import Lefter from './lefter/Lefter'
 import "./App.less";
 const loginRoute = routes.find(({ path }) => path === "/login");
 
@@ -19,19 +20,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Layout>
-          <Menu
-          className='app-lefter'
-            defaultSelectedKeys={['1']}
-            // defaultOpenKeys={['sub1']}
-            mode="inline"
-            // theme="dark"
-            // inlineCollapsed={this.state.collapsed}
-          >
-            <Menu.Item key="1">
-              <span>Option 1</span>
-            </Menu.Item>
-          </Menu>
-          {/* <div> */}
+          <Lefter></Lefter>
           <header className='app-top'>
             <span>用户名</span>
           </header>
@@ -42,17 +31,22 @@ class App extends React.Component {
               render={() => {
                 const Login = loginRoute.component;
                 if (auth) {
-                  return <Redirect to="/experiment/index" />;
+                  return <Redirect to="/experiment" />;
                 }
                 return <Login />;
               }}
             />
+             <Route
+              exact
+              path="/members"
+              render={() => (auth ? <Members /> : <Redirect to="/login" />)}
+            />
             <Route
+            exact
               path="/"
-              render={() => (auth ? <Experiment /> : <Redirect to="/login" />)}
+              render={() => (auth ? <Members /> : <Redirect to="/login" />)}
             />
           </Switch>
-          {/* </div> */}
         </Layout>
       </div>
     );
