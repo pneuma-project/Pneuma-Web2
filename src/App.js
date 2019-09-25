@@ -13,7 +13,6 @@ const loginRoute = routes.find(({ path }) => path === "/login");
 class App extends React.Component {
   render() {
     const { auth } = this.props;
-
     return (
       <div>
         <Layout>

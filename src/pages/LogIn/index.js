@@ -47,6 +47,7 @@ class NormalLoginForm extends React.Component {
                 token: loginKey,
                 username
               });
+              localStorage.setItem('username', username)
               this.props.push("/experiment");
             } else if (res.data.code === 500) {
               if (res.data.message == 4000002) {

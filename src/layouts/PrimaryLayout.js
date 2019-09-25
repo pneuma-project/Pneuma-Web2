@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, Route, Redirect, Switch } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Dropdown } from "antd";
 import routes from "../router";
 import Lefter from '../lefter/Lefter'
 const pathname = window.location.pathname
@@ -18,18 +18,31 @@ class PrimaryLayout extends React.Component {
   }
   
   render() {
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <a target="_blank" rel="noopener noreferrer"  onClick={this.handleLogOut}>
+           退出
+          </a>
+        </Menu.Item>
+      </Menu>
+    );
     return (
       <div className="App">
         <Layout>
           <Lefter></Lefter>
           <header className='app-top'>
-            <span onClick={this.handleLogOut}>用户名</span>
+            <div className='user-wrap'>
+           <Dropdown overlay={menu}  placement="bottomLeft">
+            <a>user：<a >{localStorage.getItem('username') || 'no login'}</a></a>
+          </Dropdown>
+          </div>
           </header>
           <Switch>
            {routes.filter(item => item.path !== '/login').map(item => (
              <Route key={item.path} path={item.path} exact component={item.component} />
            ))}
-                  <Redirect to={pathname}/>
+                  <Redirect to={pathname ? pathname : '/members' }/>
           </Switch>
         </Layout>
       </div>

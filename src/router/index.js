@@ -40,7 +40,7 @@ const routes = [
      // component: bundleHelper(Experiment)
     component: Experiment
   },{
-    path: "/members",
+    path: "/",
      // component: bundleHelper(Members)
     component: Members
   },{

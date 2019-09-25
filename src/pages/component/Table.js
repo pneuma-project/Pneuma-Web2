@@ -63,14 +63,14 @@ export default class TableAntd extends React.Component {
             selectChangeHandler(...rest);
         }
     }
-    setRowClassName(...rest) {
-        const { setRowClassName } = this.props;
-        let className = '';
-        if (setRowClassName) {
-            className = setRowClassName(...rest);
-        }
-        return className;
-    }
+    // setRowClassName(...rest) {
+    //     const { setRowClassName } = this.props;
+    //     let className = '';
+    //     if (setRowClassName) {
+    //         className = setRowClassName(...rest);
+    //     }
+    //     return className;
+    // }
     onSortChangeHandler(...rest) {
         const { onSortChange } = this.props;
         if (onSortChange) {
@@ -80,7 +80,7 @@ export default class TableAntd extends React.Component {
     render() {
         const {
             data, loading, columns, className, emptyWrapperCls, wrapperCls, paginationData,
-            highlightCurrentRow, showPagination, style, emptyDataText, maxHeight, scroll
+            highlightCurrentRow, showPagination, style, emptyDataText, maxHeight, scroll, self
         } = this.props;
         const rowSelection = {
             onSelect: this.onSelectChangeHandler
@@ -111,11 +111,11 @@ export default class TableAntd extends React.Component {
                                 maxHeight={maxHeight}
                                 className={className}
                                 highlightCurrentRow={highlightCurrentRow}
-                                onRow={this.onSelectChangeHandler.bind()}
+                                // onRow={this.onSelectChangeHandler.bind()}
                                 onCurrentChange={this.onCurrentChangeHandler}
                                 onSortChange={this.onSortChangeHandler}
-                                rowClassName={this.setRowClassName}
-                                key={uuid.v1()}
+                                // rowClassName={this.setRowClassName}
+                                // key={uuid.v1()}
                             />,
                             <Pagination
                                 // disabled={showPagination}
@@ -123,7 +123,7 @@ export default class TableAntd extends React.Component {
                                 pageSizeOptions={paginationData.pageSizes}
                                 pageSize={paginationData.pageSize}
                                 total={paginationData.total}
-                                onChange={paginationData.currentChangeHandler}
+                                onChange={(page, pagasize,) => paginationData.currentChangeHandler(page, pagasize, self)}
                                 onShowSizeChange={paginationData.sizeChangeHandler}
                             />
                         ]
