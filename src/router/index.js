@@ -24,6 +24,10 @@ const Experiment = asyncComponent(() =>
 const Members = asyncComponent(() =>
   import(/* webpackChunkName: "Members" */ "../pages/Members")
 );
+// 添加用户
+const AddMember = asyncComponent(() =>
+import(/* webpackChunkName: "AddMember" */ "../pages/AddMember")
+);
 // 路由匹配默认是 exact: true ,并且需要验证
 const routes = [
   {
@@ -39,6 +43,9 @@ const routes = [
     path: "/members",
      // component: bundleHelper(Members)
     component: Members
+  },{
+    path: '/members/add',
+    component: AddMember
   }
 ];
 

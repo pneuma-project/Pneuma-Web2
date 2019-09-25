@@ -6,45 +6,34 @@ import { connect } from "react-redux";
 import { withRouter, Route, Redirect, Switch } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import { hot } from "react-hot-loader";
-import Experiment from "./pages/Experiment";
-import Members from './pages/Members'
 import routes from "./router";
-import Lefter from './lefter/Lefter'
 import "./App.less";
+import PrimaryLayout from './layouts/PrimaryLayout'
 const loginRoute = routes.find(({ path }) => path === "/login");
-
 class App extends React.Component {
   render() {
     const { auth } = this.props;
 
     return (
-      <div className="App">
+      <div>
         <Layout>
-          <Lefter></Lefter>
-          <header className='app-top'>
-            <span>用户名</span>
-          </header>
           <Switch>
-            <Route
+          <Route
               exact
               path={loginRoute.path}
               render={() => {
-                const Login = loginRoute.component;
+                const Login = loginRoute.component
                 if (auth) {
-                  return <Redirect to="/experiment" />;
+                  return <Redirect to="/members" />
                 }
-                return <Login />;
+                return <Login />
               }}
             />
-             <Route
-              exact
-              path="/members"
-              render={() => (auth ? <Members /> : <Redirect to="/login" />)}
-            />
             <Route
-            exact
               path="/"
-              render={() => (auth ? <Members /> : <Redirect to="/login" />)}
+              render={() =>
+                auth ? <PrimaryLayout /> : <Redirect to="/login" />
+              }
             />
           </Switch>
         </Layout>

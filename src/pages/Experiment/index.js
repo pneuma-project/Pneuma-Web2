@@ -106,6 +106,7 @@ export default class Experiment extends Component {
   };
 
   componentDidMount() {
+    
     this.getHistoryData();
     this.getTrainData();
   }

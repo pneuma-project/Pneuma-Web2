@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, NavLink } from 'react-router-dom';
 import { Menu, Icon, Badge } from 'antd';
 const { SubMenu } = Menu;
 // import logo from '../../static/image/logo.png';
@@ -10,18 +10,18 @@ class Lefter extends React.Component {
         super(props);
         // 权限相关
         this.state = {
-            currentPath: window.location.pathname,
+            currentPath: window.location.pathname || '/members',
             currentSubMenu: '',
             initApproval: 0,
-            headerLinkList: [{
-                path: `/experiment`,
-                text: `Information`,
-                // img: 'team'
-            }, {
+            headerLinkList: [ {
                 path: `/members`,
                 text: `Members`,
                 // img: 'alert'
-            }]
+            },{
+                path: `/experiment`,
+                text: `Information`,
+                // img: 'team'
+            },]
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -51,10 +51,6 @@ class Lefter extends React.Component {
                     currentPath: item.path,
                     currentSubMenu
                 },() => {
-                    console.log(this)
-                    console.log(this.props)
-                    window.location.href = item.path;
-                    // this.props.push(item.path)
                 });
                 return true;
             }
@@ -78,6 +74,7 @@ class Lefter extends React.Component {
     
     getLefterBlock() {
         const { currentPath, headerLinkList, currentSubMenu, initApproval } = this.state;
+        console.log(currentPath,'------>currentPath')
         const { collapsed, waitingApproval } = this.props;
         return (
             <Menu

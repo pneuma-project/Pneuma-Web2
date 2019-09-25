@@ -52,6 +52,49 @@ body {
   margin: 24px;
   padding: 32px;
 }
+.page-nav {
+  background: #FFFFFF;
+  padding: 0 32px;
+  padding-bottom: 24px;
+  margin-top: 3px;
+  .page-name{
+      font-family: PingFangSC-Medium;
+      font-size: 20px;
+      color: rgba(0,0,0,0.85);
+      line-height: 28px;
+      font-weight: 600;
+  }
+  .page-back{
+      padding-top: 16px;
+      padding-bottom: 16px;
+      display: flex;
+      align-items: center;
+      .back-circle{
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          background-size: cover;
+          background: url(./static/image/left-circle.png) no-repeat;
+      }
+     span{
+          color: #1890FF;
+          font-size: 14px;
+          margin-left: 8px;
+          line-height: 24px;
+          height: 24px;
+          padding-top: 2px;
+      }
+  }
+  .page-back:hover{
+      span{
+          cursor: pointer;
+          color: #55ABFC;
+      }
+      .back-circle{
+          background: url(./static/image/left-circle-color.png) no-repeat;
+      }
+  }
+}
 /**
 * 工具类
 */
@@ -155,3 +198,25 @@ body {
   background-color: #efefef;
 }
 
+// 添加会员
+h3{
+  color: #0A4DAA; 
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 32px;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.15); 
+}
+.member-form{
+  .ant-input{
+    width: 240px;
+    height: 36;
+  }
+  h4{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 22px;
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+}
